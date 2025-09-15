@@ -304,7 +304,12 @@
                 return;
             }
 
-            socket = io('http://localhost:3000');
+            // Detectar si estamos en desarrollo o producción
+            const socketURL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:3000' 
+                : window.location.origin;
+                
+            socket = io(socketURL);
             
             socket.emit('join', username);
             

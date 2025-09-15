@@ -7,9 +7,13 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
-    }
+        origin: process.env.NODE_ENV === 'production' 
+            ? ["https://chatpublico-privado.vercel.app"] // Cambiar por tu dominio de Vercel
+            : "*",
+        methods: ["GET", "POST"],
+        credentials: true
+    },
+    transports: ['websocket', 'polling']
 });
 
 // Servir archivos estáticos desde la carpeta public
