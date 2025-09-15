@@ -309,7 +309,10 @@
                 ? 'http://localhost:3000' 
                 : window.location.origin;
                 
-            socket = io(socketURL);
+            socket = io(socketURL, {
+    transports: ['polling'], // Solo usar polling, no websockets
+    upgrade: false
+});
             
             socket.emit('join', username);
             
