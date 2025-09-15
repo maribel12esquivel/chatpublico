@@ -8,7 +8,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
         origin: process.env.NODE_ENV === 'production' 
-            ? ["https://chatpublico-privado.vercel.app"] // Cambiar por tu dominio de Vercel
+            ? ["https://chatpublico-privado.vercel.app"] // Cambiar por el dominio de Vercel
             : "*",
         methods: ["GET", "POST"],
         credentials: true
